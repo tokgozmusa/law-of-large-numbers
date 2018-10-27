@@ -2,6 +2,7 @@
   "name": "law-of-large-numbers",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://tokgozmusa.github.io/law-of-large-numbers",
   "dependencies": {
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
