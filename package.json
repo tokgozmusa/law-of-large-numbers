@@ -4,8 +4,10 @@
   "private": true,
   "homepage": "http://tokgozmusa.github.io/law-of-large-numbers",
   "dependencies": {
+    "plotly.js": "^1.41.3",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
+    "react-plotly.js": "^2.2.0",
     "react-scripts": "2.0.5"
   },
   "scripts": {
