@@ -16,7 +16,7 @@ class CustomPlot extends Component {
       layout: {
         width: '100%',
         height: '100%',
-        title: 'A Fancy Plot',
+        title: '',
         datarevision: 0,
       },
       data: [
