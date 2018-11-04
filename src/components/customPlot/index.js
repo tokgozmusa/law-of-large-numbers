@@ -40,7 +40,6 @@ class CustomPlot extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { time, data1, data2, title } = nextProps
-    console.log('title', title)
     let newData = [...this.state.data]
 
     newData[0].x = time
@@ -52,6 +51,7 @@ class CustomPlot extends Component {
     const newLayout = Object.assign({}, this.state.layout)
     newLayout.title = title
     newLayout.datarevision++
+
     this.setState({ layout: newLayout })
   }
 

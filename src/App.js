@@ -54,7 +54,7 @@ class App extends Component {
     return (
       <div className="App">
         <button
-          onClick={e => {
+          onClick={event => {
             this.setState({ displayModeBar: true })
             clearInterval(this.interval)
           }}
