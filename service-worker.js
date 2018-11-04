@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  "/law-of-large-numbers/precache-manifest.5e9e6b61601fc1ca0122693737b3d37d.js"
+  "/law-of-large-numbers/precache-manifest.1b93f00a98948d6b7358cb816056f5e7.js"
 );
 
 workbox.clientsClaim();
