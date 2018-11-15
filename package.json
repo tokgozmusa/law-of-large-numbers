@@ -4,6 +4,9 @@
   "private": true,
   "homepage": "http://tokgozmusa.github.io/law-of-large-numbers",
   "dependencies": {
+    "@material-ui/core": "^3.4.0",
+    "@material-ui/icons": "^3.0.1",
+    "@material-ui/lab": "^3.0.0-alpha.23",
     "plotly.js": "^1.41.3",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
