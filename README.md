@@ -6,6 +6,7 @@ TODOs:
 - Add precommit prettier fixer
 - Add flow
 - Add credits to: create-react-app, react-plot.js, wiki page, material-ui
+- Fix plot responsiveness
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
