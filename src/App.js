@@ -27,7 +27,7 @@ const defaultState = {
   time: [],
   total: 0,
   isRunning: false,
-  speed: 50,
+  speedSliderValue: 50, // value can be [0, 100] (both included)
   displayModeBar: true,
 };
 
@@ -38,9 +38,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { isRunning, speed } = this.state;
+    const { isRunning, speedSliderValue } = this.state;
     if (isRunning) {
-      this.interval = setInterval(() => this.tick(), speed);
+      this.interval = setInterval(
+        () => this.tick(),
+        this.calculateSpeed(speedSliderValue),
+      );
     }
   }
 
@@ -79,19 +82,32 @@ class App extends Component {
   };
 
   handlePlayPause = () => {
-    const { isRunning, speed } = this.state;
+    const { isRunning, speedSliderValue } = this.state;
     if (isRunning) {
       clearInterval(this.interval);
     } else {
-      this.interval = setInterval(() => this.tick(), speed);
+      this.interval = setInterval(
+        () => this.tick(),
+        this.calculateSpeed(speedSliderValue),
+      );
     }
     this.setState({ isRunning: !isRunning });
   };
 
-  handleSpeedChange = (event, value) => {
-    this.setState({ speed: value });
-    clearInterval(this.interval);
-    this.interval = setInterval(() => this.tick(), value);
+  handleSpeedSliderChange = (event, value) => {
+    const { isRunning } = this.state;
+    this.setState({ speedSliderValue: value });
+    if (isRunning) {
+      clearInterval(this.interval);
+      this.interval = setInterval(
+        () => this.tick(),
+        this.calculateSpeed(value),
+      );
+    }
+  };
+
+  calculateSpeed = speedSliderValue => {
+    return speedSliderValue === 0 ? 500 : 5000 / speedSliderValue;
   };
 
   refresh = () => {
@@ -106,7 +122,7 @@ class App extends Component {
       data2,
       time,
       isRunning,
-      speed,
+      speedSliderValue,
       displayModeBar,
     } = this.state;
     const { classes } = this.props;
@@ -140,7 +156,10 @@ class App extends Component {
               <Typography style={{ marginRight: 20 }} component="p">
                 Speed
               </Typography>
-              <Slider value={speed} onChange={this.handleSpeedChange} />
+              <Slider
+                value={speedSliderValue}
+                onChange={this.handleSpeedSliderChange}
+              />
             </Paper>
             <Paper className={classes.row} elevation={0}>
               <Typography style={{ marginRight: 20 }} component="p">
