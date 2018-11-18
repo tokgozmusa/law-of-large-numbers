@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import Plot from 'react-plotly.js'
+import React, { Component } from 'react';
+import Plot from 'react-plotly.js';
 
 class CustomPlot extends Component {
   static defaultProps = {
@@ -8,16 +8,20 @@ class CustomPlot extends Component {
     data1: [],
     data2: [],
     displayModeBar: false,
-  }
+  };
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       layout: {
+        title: '',
+        autosize: true,
+        datarevision: 0,
+      },
+      useResizeHandler: true,
+      style: {
         width: '100%',
         height: '100%',
-        title: '',
-        datarevision: 0,
       },
       data: [
         {
@@ -35,31 +39,32 @@ class CustomPlot extends Component {
           marker: { color: 'red' },
         },
       ],
-    }
+    };
   }
 
   componentWillReceiveProps(nextProps) {
-    const { time, data1, data2, title } = nextProps
-    let newData = [...this.state.data]
+    const { time, data1, data2, title } = nextProps;
+    let newData = [...this.state.data];
 
-    newData[0].x = time
-    newData[0].y = data1
+    newData[0].x = time;
+    newData[0].y = data1;
 
-    newData[1].x = time
-    newData[1].y = data2
+    newData[1].x = time;
+    newData[1].y = data2;
 
-    const newLayout = Object.assign({}, this.state.layout)
-    newLayout.title = title
-    newLayout.datarevision++
+    const newLayout = Object.assign({}, this.state.layout);
+    newLayout.title = title;
+    newLayout.datarevision++;
+    // TODO: handle integer overflow
 
-    this.setState({ layout: newLayout })
+    this.setState({ layout: newLayout });
   }
 
   render() {
-    const { layout, data } = this.state
-    const { displayModeBar } = this.props
-    return <Plot layout={layout} data={data} config={{ displayModeBar }} />
+    const { layout, data } = this.state;
+    const { displayModeBar } = this.props;
+    return <Plot layout={layout} data={data} config={{ displayModeBar }} />;
   }
 }
 
-export default CustomPlot
+export default CustomPlot;
