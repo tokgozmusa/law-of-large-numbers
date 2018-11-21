@@ -18,11 +18,6 @@ class CustomPlot extends Component {
         autosize: true,
         datarevision: 0,
       },
-      useResizeHandler: true,
-      style: {
-        width: '100%',
-        height: '100%',
-      },
       data: [
         {
           x: [],
@@ -63,7 +58,15 @@ class CustomPlot extends Component {
   render() {
     const { layout, data } = this.state;
     const { displayModeBar } = this.props;
-    return <Plot layout={layout} data={data} config={{ displayModeBar }} />;
+    return (
+      <Plot
+        layout={layout}
+        data={data}
+        config={{ displayModeBar }}
+        useResizeHandler={true}
+        style={{ width: '100%', height: '100%' }}
+      />
+    );
   }
 }
 
