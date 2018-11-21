@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Plot from './components/customPlot';
-
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import { MuiThemeProvider, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import Switch from '@material-ui/core/Switch';
 import IconButton from '@material-ui/core/IconButton';
 import PlayIcon from '@material-ui/icons/PlayArrow';
+import Paper from '@material-ui/core/Paper';
 import PauseIcon from '@material-ui/icons/Pause';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import Slider from '@material-ui/lab/Slider';
-
-import PropTypes from 'prop-types';
-
-import { withStyles } from '@material-ui/core/styles';
-
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-
 import Theme from './theme';
-
-import './App.css'; // TODO: ??
 
 const defaultState = {
   title: '',
@@ -27,7 +19,7 @@ const defaultState = {
   time: [],
   total: 0,
   isRunning: false,
-  speedSliderValue: 50, // value can be [0, 100] (both included)
+  speedSliderValue: 50, // can be between [0, 100] (both included)
   displayModeBar: true,
 };
 
@@ -48,14 +40,14 @@ class App extends Component {
   }
 
   getNewRandomPoint() {
-    let tail = 0;
+    let tailCounter = 0;
     for (let i = 0; i < 100; i++) {
-      const asd = Math.floor(Math.random() * 2);
-      if (asd === 0) {
-        tail++;
+      const tailOrHead = Math.floor(Math.random() * 2);
+      if (tailOrHead === 0) {
+        tailCounter++;
       }
     }
-    return tail;
+    return tailCounter;
   }
 
   tick = () => {
