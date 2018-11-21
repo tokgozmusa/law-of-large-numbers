@@ -25,6 +25,7 @@ class CustomPlot extends Component {
           type: 'scatter',
           mode: 'lines+points',
           marker: { color: 'blue' },
+          name: undefined,
         },
         {
           x: [],
@@ -32,6 +33,7 @@ class CustomPlot extends Component {
           type: 'scatter',
           mode: 'lines+points',
           marker: { color: 'red' },
+          name: undefined,
         },
       ],
     };
@@ -49,8 +51,12 @@ class CustomPlot extends Component {
 
     const newLayout = Object.assign({}, this.state.layout);
     newLayout.title = title;
-    newLayout.datarevision++;
-    // TODO: handle integer overflow
+    newLayout.datarevision++; // to re-render the plot
+
+    // prevent integer overflow
+    if (newLayout.datarevision === Number.MAX_SAFE_INTEGER) {
+      newLayout.datarevision = 0;
+    }
 
     this.setState({ layout: newLayout });
   }
